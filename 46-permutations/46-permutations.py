@@ -10,6 +10,7 @@ class Solution:
         for i in range(len(nums)):
             if i not in visited:
                 visited.add(i)
+                # print(subset+[nums[i]])
                 self.backtracking(res, visited, subset+[nums[i]], nums)
                 visited.remove(i)
                 
