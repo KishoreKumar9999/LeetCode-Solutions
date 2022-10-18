@@ -1,1 +1,1 @@
-​
+rob = max(array[0] + rob[2:n], rpb[1:n])
