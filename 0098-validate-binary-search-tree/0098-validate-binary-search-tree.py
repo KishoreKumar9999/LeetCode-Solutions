@@ -18,6 +18,8 @@ class Solution:
             if i != len(res)-1 and res[i+1] <=res[i]:
                 return False
         return True
+ # Time complexity: O(n)
+ # Space complexity: O(n)
                 
             
             
