@@ -16,22 +16,14 @@ class Solution:
                 return 
             path.append(node.val)
             s = s + node.val
-            #print(s, targetSum)
-            #print(path)
             if node.right == None and node.left == None:
-                if s == targetSum:
-                    print(path)
-                    print(res)
-                    res.append(copy.deepcopy(path))
-                    print(res)
+                if s == targetSum:       
+                    res.append(copy.deepcopy(path))   
             recur(node.left)
             recur(node.right)
             path.pop()
-            s = s-node.val
-            
-            
+            s = s-node.val        
         recur(root)
-        print(res)
         return res
                 
         
