@@ -21,19 +21,27 @@
 #             root.right = recur(preorder[mid+1:], inorder[mid+1:])
 #             return root
 #         return recur(preorder, inorder)
+
+# TC: O(n)
+# SC: O(n)
+# Does this code run on Leetcode: Yes
+# Did you find any difficulty in finding the solution: No
+
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        def recur(preorder, inorder):
-            mapping = {}
-            for i,v in enumerate(inorder):
-                mapping[v] = i
-            if not preorder and not inorder:
+        inorder_index_mapping = {}
+        for k,v in enumerate(inorder):
+            inorder_index_mapping[v] = k
+        index = 0
+        def buildtree(left,right):
+            nonlocal index
+            if left>right:
                 return None
-            root = TreeNode(preorder[0])
-            mid = mapping[root.val]
-            print(mid)
-            root.left = recur(preorder[1:mid+1], inorder[:mid])
-            root.right = recur(preorder[mid+1:], inorder[mid+1:])
+            root_val=preorder[index]
+            root = TreeNode(root_val)
+            index+=1
+            root.left = buildtree(left, inorder_index_mapping[root_val]-1)
+            root.right = buildtree(inorder_index_mapping[root_val]+1, right)
             return root
-        return recur(preorder, inorder)
+        return buildtree(0, len(preorder)-1)
         
