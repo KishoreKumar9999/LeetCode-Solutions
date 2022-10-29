@@ -8,11 +8,13 @@ class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         sum = 0
         a = 0
+        b = 0
         if not root and targetSum == 0:
             return False
         def recur(node):
             nonlocal sum
             nonlocal a
+            nonlocal b
             if not node:
                 return 
             sum += node.val
@@ -22,12 +24,11 @@ class Solution:
                 if sum == targetSum:
                     a= True
                 else:
-                    if a != True:
-                        a = False
+                    b = False
             recur(node.left)
             recur(node.right)
             sum -= node.val
-            return a
+            return (a, b)
         recur(root)
-        return a
+        return a or b
         
