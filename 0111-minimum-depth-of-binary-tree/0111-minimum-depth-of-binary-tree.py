@@ -10,8 +10,7 @@ class Solution:
             return 0
         depth, mindepth = 0, float("inf")
         def recur(node):
-            nonlocal depth
-            nonlocal mindepth
+            nonlocal depth, mindepth
             if node == None:
                 return 0
             depth += 1
