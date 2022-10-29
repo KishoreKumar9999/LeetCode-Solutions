@@ -15,10 +15,8 @@ class Solution:
             if node == None:
                 return 0
             depth += 1
-            print(depth)
             if node.left == None and node.right == None:
                 mindepth = min(depth, mindepth)
-                print(mindepth)
             recur(node.left)
             recur(node.right)
             depth -= 1
