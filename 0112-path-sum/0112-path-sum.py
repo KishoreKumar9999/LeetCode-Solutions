@@ -5,29 +5,16 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        sum = 0
-        a = 0
-        if not root and targetSum == 0:
-            return False
-        def recur(node):
-            nonlocal sum
-            nonlocal a
-            if not node:
-                return 
-            sum += node.val
-            print(sum, "node.val", node.val)
-            if node.left == None and node.right == None:
-                print(sum, targetSum)
-                if sum == targetSum:
-                    a= True
-                else:
-                    if a != True:
-                        a = False
-            recur(node.left)
-            recur(node.right)
-            sum -= node.val
-            return a
-        recur(root)
-        return a
-        
+    def hasPathSum(self, root, sum):
+        res = []
+        self.dfs(root, sum, res)
+        return any(res)
+
+    def dfs(self, root, target, res):
+        if root:
+            if not root.left and not root.right and root.val == target:
+                res.append(True)
+            if root.left:
+                self.dfs(root.left, target-root.val, res)
+            if root.right:
+                self.dfs(root.right, target-root.val, res)
