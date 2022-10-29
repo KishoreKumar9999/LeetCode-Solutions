@@ -5,24 +5,10 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root):
         if not root:
             return 0
-        depth, mindepth = 0, float("inf")
-        def recur(node):
-            nonlocal depth
-            nonlocal mindepth
-            if node == None:
-                return 0
-            depth += 1
-            print(depth)
-            if node.left == None and node.right == None:
-                mindepth = min(depth, mindepth)
-                print(mindepth)
-            recur(node.left)
-            recur(node.right)
-            depth -= 1
-        recur(root)
-        return mindepth
-        
-        
+        if None in [root.left, root.right]:
+            return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
+        else:
+            return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
